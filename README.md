@@ -41,16 +41,16 @@ ____
 ## Внутри контейнера web ##
 
 #### Выполните миграции: ####
-    docker-compose exac web python3 manage.py migrate
+    docker-compose exec web python3 manage.py migrate
   
 #### Заполните базу данных из csv файлов: ####
-    docker-compose exac web python3 manage.py populate_db
+    docker-compose exec web python3 manage.py populate_db
   
 #### Создайте суперюзера: ####
-    docker-compose exac web python3 manage.py cratesuperuser
+    docker-compose exec web python3 manage.py cratesuperuser
 
 #### Соберите статику: ####
-    docker-compose exac web python3 manage.py collectstatic
+    docker-compose exec web python3 manage.py collectstatic
 
 Теперь сервис доступен для работы на вашем компьютере по адресу http://localhost/api/v1/, а админка – http://localhost/admin/.
 ____
