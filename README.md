@@ -29,7 +29,7 @@ ____
 ## Установка ##
 
 ### Клонируйте репозиторий: ###
-    git clone git@github.com:mark-rom/infra_sp2.git
+    git clone git@github.com:mark-rom/yamdb_final.git
 
 ### Перейдите в репозиторий в командной строке: ###
     cd infra_sp2/infra/
