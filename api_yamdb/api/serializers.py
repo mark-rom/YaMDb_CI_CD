@@ -4,7 +4,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers, status
 from rest_framework.validators import UniqueTogetherValidator
 from rest_framework_simplejwt.tokens import RefreshToken
-
 from reviews import models
 from users.models import User
 

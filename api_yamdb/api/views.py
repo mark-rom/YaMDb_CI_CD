@@ -8,7 +8,6 @@ from rest_framework import (filters, generics, mixins, response, status,
                             viewsets)
 from rest_framework.decorators import action
 from rest_framework.pagination import LimitOffsetPagination
-
 from reviews import models
 from users.models import User
 
