@@ -70,10 +70,10 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             sudo docker image pull pavelsergeev/yamdb_final:latest
             sudo docker-compose up -d
-            # sudo docker-compose exec -T web python manage.py makemigrations
-            # sudo docker-compose exec -T web python manage.py migrate
-            # sudo docker-compose exec -T web python manage.py collectstatic --noinput
-            # sudo docker-compose exec web python3 manage.py populate_db
+            sudo docker-compose exec -T web python manage.py makemigrations
+            sudo docker-compose exec -T web python manage.py migrate
+            sudo docker-compose exec -T web python manage.py collectstatic --noinput
+            sudo docker-compose exec web python3 manage.py populate_db
 
   send_message:
     runs-on: ubuntu-latest
