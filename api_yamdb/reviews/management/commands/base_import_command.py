@@ -1,8 +1,11 @@
 import csv
 import os
 
-from django.apps import apps
 from django.core.management.base import BaseCommand, CommandError
+
+BASE_DIR = os.path.dirname(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 
 
 class BaseImportCommand(BaseCommand):
@@ -13,7 +16,7 @@ class BaseImportCommand(BaseCommand):
         parser.add_argument('filename', type=str, help='filename for csv file')
 
     def get_current_app_path(self):
-        return apps.get_app_config('static').path
+        return os.path.join(BASE_DIR, "static")
 
     def get_csv_file(self, filename):
         app_path = self.get_current_app_path()
