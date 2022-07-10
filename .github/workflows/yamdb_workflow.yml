@@ -1,6 +1,6 @@
 name: yamdb_api workflow
 
-on: [push, pull_request]
+on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
