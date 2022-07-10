@@ -28,7 +28,7 @@ jobs:
     name: Build Docker image and push to Dockerhub
     runs-on: ubuntu-latest
     needs: tests
-    if: $ {{ github.ref == 'ref/heads/master' }}
+    if: ${{ github.ref == 'ref/heads/master' }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
