@@ -26,7 +26,12 @@ jobs:
 
   build:
     name: Build Docker image and push to Dockerhub
-    if: github.ref == 'ref/heads/main'
+    if: 
+      contains('
+        ref/heads/master
+        ref/heads/main
+        ref/heads/HEAD
+      ', github.ref)
     runs-on: ubuntu-latest
     needs: tests
     steps:
