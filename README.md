@@ -59,5 +59,12 @@ ____
 Теперь сервис доступен для работы на вашем компьютере по адресу http://localhost/api/v1/, а админка – http://localhost/admin/.
 ____
 
+## CI/CD ##
+
+Для проекта настроен автоматический деплой на удаленный сервер. Файл с настройками workflow лежит в папке yamdb_final/.github/workflows/
+
+Переменные окружения хранятся в Actions secrets репозитория.
+____
+
 ## Авторы ##
 [Артем Меркулов](https://github.com/aimerkz), [Артем Фабриков](https://github.com/KitKat-ru), [Павел Сергеев](https://github.com/mark-rom)
