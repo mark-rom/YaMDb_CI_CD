@@ -1,66 +1,62 @@
 ![example workflow](https://github.com/mark-rom/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 
 ## YaMDb API ##
-### Описание: ###
+### Description: ###
 
-Проект YaMDb (REST API) собирает отзывы пользователей на различные произведения. Читать контент могут все, вносить и изменять только аутентифицированные пользователи.  
-Предоставляет ответы от сервера в формате JSON для последующей сериалиализации на стороне фронта.
+YaMDb API is a REST API for content rating service like IMDb. Authenticated users can post reviews on titles, and comment on others' reviews. Moderators can edit or even delete unacceptable content. Every user on the Internet can read reviews.
 
-#### Алгоритм регистрации пользователей ####
+## Install ##
+
+### Clone the repo: ###
+    git clone git@github.com:mark-rom/YaMDb_CI_CD.git
+
+### Go to new dir: ###
+    cd YaMDb_CI_CD/infra/
   
-1. Пользователь отправляет POST-запрос на добавление нового пользователя с параметрами `email` и `username` на эндпоинт `/api/v1/auth/signup/`.  
-2. YaMDB отправляет письмо с кодом подтверждения `confirmation_code` на адрес `email`. В проекте реализован бэкенд почтового сервиса, папка - `sent_emails`.  
-3. Пользователь отправляет POST-запрос с параметрами `username` и `confirmation_code` на эндпоинт `/api/v1/auth/token/`, в ответе на запрос ему приходит token (JWT-токен).  
-4. При желании пользователь отправляет PATCH-запрос на эндпоинт `/api/v1/users/me/` и заполняет поля в своём профайле. 
-____
-
-## Технологии ##
-- Python 3.7
-- Django 2.2.19
-- Djangorestframework 3.12.4
-- JWT
-- Docker
-- Docker-compose
-- PostgreSQL
-- Nginx
-- Github workflows
-____
-
-## Установка ##
-
-### Клонируйте репозиторий: ###
-    git clone git@github.com:mark-rom/yamdb_final.git
-
-### Перейдите в репозиторий в командной строке: ###
-    cd infra_sp2/infra/
-  
-### Запустите docker-compose в detach-режиме: ###
+### Run docker-compose: ###
     docker-compose up -d
 ____
 
-## Внутри контейнера web ##
+## Inside the web container ##
 
-#### Выполните миграции: ####
+#### Migrate: ####
     docker-compose exec web python3 manage.py migrate
+
+#### Collect static: ####
+    docker-compose exec web python3 manage.py collectstatic
   
-#### Заполните базу данных из csv файлов: ####
+#### Populate db: ####
     docker-compose exec web python3 manage.py populate_db
   
-#### Создайте суперюзера: ####
+#### Create superuser: ####
     docker-compose exec web python3 manage.py cratesuperuser
 
-#### Соберите статику: ####
-    docker-compose exec web python3 manage.py collectstatic
+Now the service is available on your local machine at http://localhost/api/v1/, and the admin panel is on http://localhost/admin/.
+____
 
-Теперь сервис доступен для работы на вашем компьютере по адресу http://localhost/api/v1/, а админка – http://localhost/admin/.
+#### How to register ####
+  
+1. Send POST-request with `email` and `username` parameters to the endpoint `/api/v1/auth/signup/`
+2. YaMDB sends a letter with a confirmation code to the email.
+3. Send POST-request with `username` and `confirmation_code` to the endpoint `/api/v1/auth/token/`. You will receive a JWT token.
+4. You can fill up your profile with PATCH-request to the endpoint `/api/v1/users/me/`
+____
+
+## Technologies ##
+-Python 3.7
+- Django 2.2.19
+- Djangorestframework 3.12.4
+- JWT
+-Docker
+- docker-compose
+- PostgreSQL
+- nginx
+- GitHub workflows
 ____
 
 ## CI/CD ##
-
-Для проекта настроен автоматический деплой на удаленный сервер. Файл с настройками workflow лежит в папке yamdb_final/.github/workflows/
-
-Переменные окружения хранятся в Actions secrets репозитория.
+Set CI/CD to a virtual server. Workflow settings are in `YaMDb_CI_CD/.github/workflows/` directory. Environmental variables are in Actions secrets.
 ____
 
-## Авторы ##
-[Артем Меркулов](https://github.com/aimerkz), [Артем Фабриков](https://github.com/KitKat-ru), [Павел Сергеев](https://github.com/mark-rom)
+##Authors##
+[Artem Merkulov](https://github.com/aimerkz), [Artem Fabricov](https://github.com/KitKat-ru), [Pavel Sergeev](https://github.com/mark-rom )
